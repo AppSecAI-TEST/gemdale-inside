@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+    <settings>
+        <!-- 开启mybatis缓存设置,一般都是true -->
+        <setting name="cacheEnabled" value="true"/>
+
+        <!--延迟加载的全局开关-->
+        <setting name="lazyLoadingEnabled" value="false"/>
+
+        <!--设置超时时间-->
+        <setting name="defaultStatementTimeout" value="3000"/>
+
+
+        <!--本地缓存机制-->
+        <setting name="localCacheScope" value="STATEMENT"/>
+
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!--允许JDBC支持自动生成主键,需要驱动的兼容-->
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+    <plugins>
+        <!-- 配置分页助手 com.github.pagehelper.PageHelper-->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql" />
+            <!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+            <property name="rowBoundsWithCount" value="true" />
+        </plugin>
+
+        <!-- 通用Mapper com.github.abel533.mapperhelper.MapperInterceptor"-->
+        <plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+            <!--主键自增回写方法,默认值MYSQL,详细说明请看文档 -->
+            <property name="IDENTITY" value="MYSQL" />
+            <!--通用Mapper接口，多个通用接口用逗号隔开 -->
+            <property name="mappers" value="com.github.abel533.mapper.Mapper" />
+        </plugin>
+    </plugins>
+
+</configuration>
