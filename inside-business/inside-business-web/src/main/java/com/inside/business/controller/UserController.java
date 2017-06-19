@@ -22,6 +22,7 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 根据id回去user
      * @param userId
      * @return
      */
