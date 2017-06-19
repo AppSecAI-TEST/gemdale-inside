@@ -22,6 +22,7 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 2017/06/19
      *  根据ID查询
      * @param userId
      * @return
