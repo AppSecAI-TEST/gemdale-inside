@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /**
+     /**
      * 根据id查询user对象
      * @param userId
      * @return
