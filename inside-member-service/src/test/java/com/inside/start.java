@@ -12,7 +12,6 @@ public class start {
     public static void main(String[] args) throws IOException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:spring/applicationContext*.xml");
         context.start();
-
         System.in.read();
     }
 }
