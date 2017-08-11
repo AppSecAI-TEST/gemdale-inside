@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>inside-parent</artifactId>
         <groupId>com.inside</groupId>
@@ -7,46 +7,46 @@
         <relativePath>../inside-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>inside-business</artifactId>
-    <packaging>pom</packaging>
-
-    <name>inside-business</name>
+    <artifactId>inside-admin</artifactId>
+    <packaging>war</packaging>
+    <name>inside-admin Maven Webapp</name>
     <url>http://maven.apache.org</url>
-    <modules>
-        <module>inside-business-pojo</module>
-        <module>inside-business-mapper</module>
-        <module>inside-business-service</module>
-        <module>inside-business-web</module>
-    </modules>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
-        <!--单元测试 子工程都需要-->
+        <!--本地引用-->
+        <dependency>
+            <groupId>com.inside</groupId>
+            <artifactId>inside-member-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
 
-
+        <!--spring-->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
+            <artifactId>spring-webmvc</artifactId>
         </dependency>
+
+        <!--dubbo +zkclient-->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
         </dependency>
 
     </dependencies>
@@ -57,7 +57,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <path>/</path>
-                    <port>8081</port>
+                    <port>8082</port>
                 </configuration>
             </plugin>
         </plugins>
